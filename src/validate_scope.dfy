@@ -29,6 +29,7 @@ requires |s| > 0;
   var i := 0;
   var j := 0;
   var sub := "";
+  var result := []
   while j < |s| 
   invariant i <= j <= |s|;
   {
@@ -101,6 +102,8 @@ method Validate_Scope(
 requires |value| > 0; 
 {
     var scope := split1(value, ' ');
+    var t := true;
+    var result := [];
     var iter := 0;
     var i := 0;
     var info1 := "";
