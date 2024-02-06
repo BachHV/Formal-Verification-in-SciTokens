@@ -24,14 +24,14 @@ method Main()
 }
 
 method split1(s : string, t : char) returns (result : seq<string>)
-requires |s| > 0;
+requires |s| > 0
 {
   var i := 0;
   var j := 0;
   var sub := "";
-  var result := []
-  while j < |s| 
-  invariant i <= j <= |s|;
+  result := [];
+  while (j < |s|) 
+    invariant i <= j <= |s|
   {
     if (s[j] == t || j == |s| - 1) {
       sub := s[i..j];
@@ -54,7 +54,7 @@ method split2(scope : string) returns (info1 : string, info2 : string, t : bool)
         return info1, info2, t;
     }
     while (i < |scope|) 
-    invariant 0 <= i <= |scope|;
+    invariant 0 <= i <= |scope|
     {
         if (scope[i] == ':') {
             iter := i;
@@ -99,11 +99,11 @@ method Validate_Scope(
         t : bool, 
         result : seq<seq<string>>)
 
-requires |value| > 0; 
+requires |value| > 0
 {
     var scope := split1(value, ' ');
-    var t := true;
-    var result := [];
+    t := true;
+    result := [];
     var iter := 0;
     var i := 0;
     var info1 := "";
@@ -114,7 +114,7 @@ requires |value| > 0;
     var k := true;
     if (test_access == true) {
         while (iter < |scope|) 
-        invariant 0 <= iter <= |scope|;
+        invariant 0 <= iter <= |scope|
         {
             authz, norm_path, j := Check_Scope(scope[iter]);
             k := startswith(norm_path, norm_requested_path);
@@ -129,7 +129,7 @@ requires |value| > 0;
     } else {
         result := token_scope;
         while (iter < |scope|) 
-        invariant 0 <= iter <= |scope|;
+        invariant 0 <= iter <= |scope|
         {
             authz, norm_path, j := Check_Scope(scope[iter]);
             result := result + [[authz, norm_path]];

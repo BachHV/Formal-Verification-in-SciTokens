@@ -2,14 +2,15 @@ method Split(scope : string) returns (info1 : string, info2 : string, t : bool)
 {
     var i := 0;
     var iter := 0;
+    t := true;
     if (':' !in scope || |scope| <= 1) {
         t := false;
         info1 := "";
         info2 := "";
-        return;
+        return info1, info2, t;
     }
     while (i < |scope|) 
-    invariant 0 <= i <= |scope|;
+        invariant 0 <= i <= |scope|
     {
         if (scope[i] == ':') {
             iter := i;
@@ -19,6 +20,7 @@ method Split(scope : string) returns (info1 : string, info2 : string, t : bool)
     }
     info1 := scope[..iter];
     info2 := scope[iter + 1..];
+    return info1, info2, t;
 }
 
 method Check_Scope(scope : string) returns (authz : string, norm_path : string) 
