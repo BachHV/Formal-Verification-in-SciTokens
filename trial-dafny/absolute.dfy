@@ -1,5 +1,5 @@
 method Abs(x: int) returns (r: int)
-ensures r>=0;
+ensures r>=0
 {
     if (x >= 0){
         return x;
